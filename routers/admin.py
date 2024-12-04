@@ -18,3 +18,25 @@ def create_admin(user: UserCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+@router.put("/ban/{user_id}")
+def ban_user(user_id: int, db: Session = Depends(get_db)):
+    user = db.query(UserModel).filter(UserModel.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.is_admin:
+        raise HTTPException(status_code=400, detail="Cannot ban/unban an admin user")
+    
+    user.is_active = False
+    db.commit()
+    return {"message": "User banned successfully"}
+
+@router.put("/unban/{user_id}")
+def unban_user(user_id: int, db: Session = Depends(get_db)):
+    user = db.query(UserModel).filter(UserModel.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    user.is_active = True
+    db.commit()
+    return {"message": "User unbanned successfully"}
