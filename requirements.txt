@@ -8,3 +8,8 @@ alembic
 pyjwt
 python-jose
 python-multipart
+requests
+telebot
+flask
+
+

@@ -1,1 +1,3 @@
 DATABASE_URL = "postgresql://user:12345@localhost/tachbl"
+TELEGRAM_BOT_TOKEN = "7982513717:AAFmQKYgf-lNpAXHc_sf4pINn1j3ZeinSI8"
+TELEGRAM_CHAT_ID = "769326792"
