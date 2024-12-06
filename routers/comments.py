@@ -3,7 +3,8 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models import Comment, User
 from schemas import CommentCreate, Comment
-from services.auth import get_current_user  # Импортируйте функцию get_current_user
+from services.auth import get_current_user
+
 
 router = APIRouter()
 

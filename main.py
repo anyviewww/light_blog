@@ -12,7 +12,15 @@ from services.bot import send_telegram_message, start_bot
 logging.basicConfig(filename='bot.log', level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-app = FastAPI()
+#app = FastAPI()
+app = FastAPI(
+    title="Light Blog API",
+    description="API documentation for Light Blog",
+    version="1.0.0",
+    openapi_url="/api/v1/openapi.json",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
+)
 
 #Base.metadata.create_all(bind=engine)
 
@@ -40,9 +48,6 @@ async def internal_server_error_handler(request: Request, exc: Exception):
         content={"message": "Internal Server Error"},
     )
 
-#if __name__ == "__main__":
-#    import uvicorn
-#    uvicorn.run(app, host="0.0.0.0", port=8000)
 @app.get("/")
 async def read_root():
     return {"Welcome to the application!"}
