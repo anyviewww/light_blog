@@ -8,5 +8,10 @@
 ## Запуск сервиса при помощи docker-compose: 
 - docker-compose up --build
 
+## Как открыть схему взаимодействия с сервисом :
+- bash: uvicorn main:app --reload
+- открыть http://127.0.0.1:8000/api/docs
+  Либо через Swagger UI (файл openapi.json)
+
 Сервис будет доступен по адресу 127.0.0.1:8000 (localhost)
 
